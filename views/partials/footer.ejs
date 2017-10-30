@@ -1,0 +1,44 @@
+
+    </div> 
+    <!-- end of main-body -->
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-xs-6">
+                    <div id="map" style="width:200px;height:200px;background:yellow"></div>
+                </div>
+                <div class="col-md-4 col-xs-6 organization-info">
+                    Volcán # 632, Secc. Monumental, Playas de Tijuana, Tijuana, B.C., México
+Tel. (664) 630.05.90 | info@pfea.org
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script>
+        function myMap() {
+            var mapOptions = {
+                center: new google.maps.LatLng(32.520691,-117.074147),
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            }
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+
+    </script>
+    <!-- Javascript files -->
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMeMkpK2O4g2fpTf6KCIlgxJ02VBAVna8&callback=myMap"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

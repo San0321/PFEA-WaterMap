@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Index Page</title>
+    <link rel='stylesheet' href='stylesheets/style.css' />
+    <link rel='stylesheet' href='css/bootstrap.min.css' />
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"> </script>
+
+    
+  </head>
+  <body>
+
+
+
+<%  var water_samples = parque;
+   var newDate = "";
+%>
+
+<div class="panel-group" id="accordion">
+<% for(var x= 0; x< water_samples.length; x++){ %> 
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a  data-toggle="collapse" data-parent="#accordion" href="#collapse<%=x+1%>">
+             <%  
+                var monthNames = [
+                    "January", "February", "March",
+                    "April", "May", "June", "July",
+                    "August", "September", "October",
+                    "November", "December"
+                ];
+                var date = water_samples[x].date;
+                var monthIndex = date.getMonth();
+                var new_date = monthNames[monthIndex] + ' ' + date.getDate() + ', ' + date.getFullYear(); %>
+            <%= new_date %>
+        </a>
+        <span class="color-box">
+        </span>
+      </h4>
+    </div>
+    <div id="collapse<%=x+1%>" class="panel-collapse collapse">
+      <div class="panel-body">
+         <h5>Bacteriologico: <%= water_samples[x].bacteriologico%></h5>
+         <h5>Temperatura: <%= water_samples[x].temperatura %></h5>
+         <h5>Potencial: <%= water_samples[x].potencial %></h5>
+         <h5>Conductividad: <%= water_samples[x].conductividad %></h5>
+         <h5>Oxigeno_disuelto: <%= water_samples[x].oxigeno_disuelto%></h5>
+         <h5>Saturacion_oxigeno: <%=water_samples[x].saturacion_oxigeno%></h5>
+         <h5>Tds: <%= water_samples[x].tds %></h5>
+         <h5>Salinidad:<%= water_samples[x].salinidad %></h5>
+         <h5>Presion:<%= water_samples[x].presion  %></h5>
+         <h5>Densidad:<%= water_samples[x].densidad %></h5>
+      </div>
+    </div>
+  </div>
+<%}%>
+</div>

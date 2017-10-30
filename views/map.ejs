@@ -1,0 +1,31 @@
+<!--views/map.ejs-->
+
+<!DOCTYPE html>
+    <html lang = "en">
+    <head>
+        <%include ./partials/head.ejs%>
+    </head>
+    <body class="container">
+        <header>
+            <%include ./partials/header.ejs%>
+        </header>
+        <main>
+            <div class="col-sm-8 col-xs-12">
+                    <img id="map" src="/img/map.jpg" usemap="#veg">
+                    <div class="area">
+                        <a onclick="displayText(1)"><div id="area1" class="area1"></div></a>
+                        <a onclick="displayText(2)"><div id="area2" class="area2"></div></a>
+                        <a onclick="displayText(3)"><div id="area3" class="area3"></div></a>
+                        <a onclick="displayText(4)"><div id="area4" class="area4"></div></a>
+                        <a onclick="displayText(5)"><div id="area5" class="area5"></div></a>
+                    </div>
+            </div>
+        </main>
+        <footer>
+            <%include ./partials/footer.ejs %>
+        </footer>
+        <!-- Javascript files -->
+        <script src="watermap.js"></script>
+        <script src="public/js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    </body>
+    </html>

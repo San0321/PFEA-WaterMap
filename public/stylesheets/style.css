@@ -1,0 +1,150 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+
+}
+
+
+a {
+  color: #00B7FF;
+}
+
+
+#custom-brand {
+  height: 50px;
+} 
+
+.custom-navbar-link {
+    font-size: 25px;
+    margin-top: 25px;
+}
+
+.custom-navbar-link-last {
+    margin-right: 80px; 
+}
+
+.custom-main-body {
+    margin-top: 30px;
+    padding: 50px;
+}
+
+
+/*  footer  */
+/*footer {
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  background-color: #0054A6; 
+}
+
+
+
+@media (max-width: 1080px) {
+  .footer {
+      position: relative;
+      margin-bottom: 0px;
+      bottom: -1000px;
+  }
+}*/
+
+.footer {
+    padding: 1em;
+    color: white;
+    clear: left;
+    text-align: center;
+    background-color: #0054A6;
+}
+
+@media (max-width: 1080px) {
+  .footer {
+      position: relative;
+      margin-bottom: 0px;
+      bottom: -300px;
+  }
+}
+
+
+/*ALL FOR LOGIN PAGE*/
+.autho-form {
+    width: 340px;
+    margin: 0 auto;
+}
+
+.px-3 {
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+}
+
+
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+
+/*---------------------------------_*/
+#map {
+  margin-left: 20px;
+}
+
+.color-box{
+   background-color:blue;
+   float:right;
+   height:22px; 
+   width:50px; 
+   margin: 0 0 0 0
+}
+
+.organization-info {
+  color: white;
+  font-size: 20px;
+  padding-top: 20px;
+  height: 60px;
+  text-align: center;
+}
+
+/*upload page*/
+#page-title {
+  text-align: center;
+}
+
+.custom-link:hover{
+  color: #fff;
+}
+
+#upload_ul {
+  list-style-type: none;
+  margin-left: 0px;
+  margin-top: 20px;
+  color: #0054A6;
+}
+.custom-list-group-item:hover{
+  background-color: #0054A6;
+  color: #fff;
+} 
+/*.admin-container {
+  margin-bottom: 500px;
+}*/
+.custom-button-container{
+  float: right;
+  position: relative;
+  top: -5px;
+  margin-right: 10px;
+}
+
+
+
+@media (max-width: 550px) {
+  #custom-download-button {
+    float: none;
+  }
+  .custom-button-container{
+    float: none;
+    display: block;
+    margin-top: 10px;
+  }
+}

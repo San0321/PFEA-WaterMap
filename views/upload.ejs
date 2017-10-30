@@ -1,0 +1,55 @@
+<% include partials/header %>
+
+<% if (locals.user) { %>
+
+<h1 id="page-title">Admin Page</h1>
+
+<h1>Upload File:</h1>
+<form id="upload_file" enctype="multipart/form-data" method="post" action="/upload">
+    <input class="btn btn-default" type="file" id="fileupload" name="file"><br>
+    <button class="btn btn-primary" type="submit">Upload</button>
+</form>
+
+<% } else { %>
+
+<h1 id="page-title">Past Uploads</h1>
+
+<% } %>
+
+<h1>Past Uploaded Files</h1>
+<ul class="list-group" id="upload_ul">
+   <% for(var i=0; i<pastData.length; i++) {%>
+       <li type="link" class="list-group-item custom-list-group-item custom-link"><%= pastData[i] %>
+            <section class="custom-button-container">
+                <form id="actionform" action="/upload/download" method="get">
+                    <input type="hidden" name="fname" value="<%= pastData[i] %>" >
+
+                    <% if (locals.user) { %>
+                    <button type="submit" formaction="/upload/delete" class="btn btn-danger btn-sm" id="custom-download-button" onclick="deleteComfirm()">Delete</button>
+                    <% } %>
+
+                    <button type="submit" class="btn btn-primary btn-sm" id="custom-download-button">Download</button>
+               </form>
+           </section>
+       </li>
+
+    <% } %>
+</ul>
+
+<script>
+function deleteComfirm() {
+    var txt;
+    if (confirm("Are you you want to delete ?") == true) {
+        txt = "The file has been deleted :)";
+
+        $("#actionform").attr("action", "/upload/delete");
+
+
+    } else {
+        txt = "Canceled Delete!";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+<% include partials/footer %>

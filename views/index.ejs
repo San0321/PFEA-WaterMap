@@ -1,0 +1,385 @@
+<% include partials/header %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+	<div style="padding-bottom: 5px;" class="row" style="padding:30px;">
+		<div class="col-sm-8 col-xs-12">
+
+
+
+
+			 <div class="legend-wrap ">
+				 <span class="gradien-text3">Bacteriologico (cfu/ml)</span>
+
+
+				 <div id="grad1" >
+					 <span class="gradien-text">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</span>
+
+
+				    <span class="gradien-text">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;600&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;800&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1200+&nbsp;&nbsp;&nbsp;</span>
+
+				 </div>
+				 	
+			</div>
+
+			<img id="map1" src="img/map.jpg" class="img-fluid" alt="Responsive image">
+
+
+			<div class="area">
+				<a onclick="displayText(1)">
+					<div id="area1" class="area1">
+						<p>El Faro</p>
+					</div>
+				</a>
+				<div style="padding-bottom: 20px;"></div>
+				<a onclick="displayText(2)">
+					<div id="area2" class="area2">
+						<p>Parque México</p>
+					</div>
+				</a>
+				<div style="padding-bottom: 20px;"></div>
+				<a onclick="displayText(3)">
+					<div id="area3" class="area3">
+						<p>Cañada Azteca</p>
+					</div>
+				</a>
+				<div style="padding-bottom: 20px;"></div>
+				<a onclick="displayText(4)">
+					<div id="area4" class="area4">
+						<p>El Vigia</p>
+					</div>
+				</a>
+				<div style="padding-bottom: 40px;"></div>
+				<a onclick="displayText(5)">
+					<div id="area5" class="area5">
+						<p>San Antonio</p>
+					</div>
+				</a>
+				<div style="padding-bottom: 20px;"></div>
+			</div>
+		</div>
+
+
+
+		<div class="col-sm-4 col-xs-12" style="overflow:scroll; height:700px;">
+
+
+		<div id="defaultpanel" style = "display: show">
+			<h4>Please click on a beach to your left to display more info </h4>
+		</div>
+
+
+
+		<div id="elfaro" style="display: none">
+		<div> <h3>El Faro Beach</h3> </div>
+			<div class="panel-group" id="accordion1">
+				<% for(var x= 0; x< elfaro.length; x++){ %>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a  data-toggle="collapse" data-parent="#accordion1" href="#elfarocollapse<%=x+1%>">
+								<%
+								var monthNames = [
+								"Jan", "Feb", "Mar",
+								"Apr", "May", "Jun", "Jul",
+								"Aug", "Sept", "Oct",
+								"Nov", "Dec"
+								];
+								var recordDate = elfaro[x].date;
+
+								var res = recordDate.split("/");
+
+								var monthname = monthNames[res[1] - 1];
+								%>
+								<%= monthname + " " + res[0] + ", " + res[2]%>
+							</a>
+							<p id="efbox<%=x+1%>" class="color-box">
+								<script type="text/javascript">
+									loadListColor("efbox<%=x+1%>", <%=elfaro[x].bacteriologico%>);
+								</script>
+							</h4>
+						</div>
+						<div id="elfarocollapse<%=x+1%>" class="panel-collapse collapse">
+							<div class="panel-body">
+								<h5>Bacteriologico: <%= elfaro[x].bacteriologico%></h5>
+								<h5>Temperatura: <%= elfaro[x].temperatura %></h5>
+								<h5>Potencial: <%= elfaro[x].potencial %></h5>
+								<h5>Conductividad: <%= elfaro[x].conductividad %></h5>
+								<h5>Oxigeno_disuelto: <%= elfaro[x].oxigeno_disuelto%></h5>
+								<h5>Saturacion_oxigeno: <%=elfaro[x].saturacion_oxigeno%></h5>
+								<h5>Tds: <%= elfaro[x].tds %></h5>
+								<h5>Salinidad: <%= elfaro[x].salinidad %></h5>
+								<h5>Presion: <%= elfaro[x].presion  %></h5>
+								<h5>Densidad: <%= elfaro[x].densidad %></h5>
+								<h5>Excel Sheet: <%= elfaro[x].file %></h5>
+							</div>
+						</div>
+					</div>
+					<%}%>
+				</div>
+			</div>
+
+
+
+			<div id="parque" style="display: none">
+			<div>
+						<h3>Parque México Beach</h3>
+					</div>
+				<div class="panel-group" id="accordion2">
+					<% for(var x= 0; x< parque.length; x++){ %>
+					<div class="panel panel-default">
+						<div class="panel-heading" >
+							<h4 class="panel-title">
+								<a  data-toggle="collapse" data-parent="#accordion2" href="#parquecollapse<%=x+1%>">
+								<%
+								var monthNames = [
+								"Jan", "Feb", "Mar",
+								"Apr", "May", "Jun", "Jul",
+								"Aug", "Sept", "Oct",
+								"Nov", "Dec"
+								];
+								var recordDate = elfaro[x].date;
+
+								var res = recordDate.split("/");
+
+								var monthname1 = monthNames[res[1] - 1];
+
+								%>
+								<%= monthname1 + " " + res[0] + ", " + res[2]%>
+								</a>
+								<p id="pqbox<%=x+1%>" class="color-box">
+									<script type="text/javascript">
+										loadListColor("pqbox<%=x+1%>", <%=parque[x].bacteriologico%>);
+									</script>
+								</h4>
+							</div>
+							<div id="parquecollapse<%=x+1%>" class="panel-collapse collapse">
+								<div class="panel-body">
+									<h5>Bacteriologico: <%= parque[x].bacteriologico%></h5>
+									<h5>Temperatura: <%= parque[x].temperatura %></h5>
+									<h5>Potencial: <%= parque[x].potencial %></h5>
+									<h5>Conductividad: <%= parque[x].conductividad %></h5>
+									<h5>Oxigeno_disuelto: <%= parque[x].oxigeno_disuelto%></h5>
+									<h5>Saturacion_oxigeno: <%=parque[x].saturacion_oxigeno%></h5>
+									<h5>Tds: <%= parque[x].tds %></h5>
+									<h5>Salinidad: <%= parque[x].salinidad %></h5>
+									<h5>Presion: <%= parque[x].presion  %></h5>
+									<h5>Densidad: <%= parque[x].densidad %></h5>
+									<h5>Excel Sheet: <%= parque[x].file %></h5>
+								</div>
+							</div>
+						</div>
+						<%}%>
+					</div>
+				</div>
+
+
+
+
+				<div id="canada" style="display: none">
+					<div>
+						<h3>Cañada Azteca Beach</h3>
+					</div>
+					<div class="panel-group" id="accordion3">
+						<% for(var x= 0; x< canada.length; x++){ %>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" >
+								<h4 class="panel-title">
+									<a  data-toggle="collapse" data-parent="#accordion3" href="#canadacollapse<%=x+1%>">
+
+									<%
+									var monthNames = [
+									"Jan", "Feb", "Mar",
+									"Apr", "May", "Jun", "Jul",
+									"Aug", "Sept", "Oct",
+									"Nov", "Dec"
+									];
+									var recordDate = canada[x].date;
+
+									var res = recordDate.split("/");
+
+									var monthname = monthNames[res[1] - 1];
+
+									%>
+									<%= monthname + " " + res[0] + ", " + res[2]%>
+									</a>
+									<p id="cd<%=x+1%>" class="color-box">
+										<script type="text/javascript">
+											loadListColor("cd<%=x+1%>", <%=canada[x].bacteriologico%>);
+										</script>
+									</h4>
+								</div>
+								<div id="canadacollapse<%=x+1%>" class="panel-collapse collapse">
+									<div class="panel-body">
+										<h5>Bacteriologico: <%= canada[x].bacteriologico%></h5>
+										<h5>Temperatura: <%= canada[x].temperatura %></h5>
+										<h5>Potencial: <%= canada[x].potencial %></h5>
+										<h5>Conductividad: <%= canada[x].conductividad %></h5>
+										<h5>Oxigeno_disuelto: <%= canada[x].oxigeno_disuelto%></h5>
+										<h5>Saturacion_oxigeno: <%=canada[x].saturacion_oxigeno%></h5>
+										<h5>Tds: <%= canada[x].tds %></h5>
+										<h5>Salinidad: <%= canada[x].salinidad %></h5>
+										<h5>Presion: <%= canada[x].presion  %></h5>
+										<h5>Densidad: <%= canada[x].densidad %></h5>
+										<h5>Excel Sheet: <%= canada[x].file %></h5>
+									</div>
+								</div>
+							</div>
+							<%}%>
+						</div>
+					</div>
+
+
+					<div id="elvigia" style="display: none">
+						<div>
+						<h3>El Vigia Beach</h3>
+						</div>
+						<div class="panel-group" id="accordion4">
+
+							<% for(var x= 0; x< elvigia.length; x++){ %>
+
+							<div class="panel panel-default">
+								<div class="panel-heading" >
+									<h4 class="panel-title">
+										<a  data-toggle="collapse" data-parent="#accordion4" href="#elvigiacollapse<%=x+1%>">
+
+										<%
+										var monthNames = [
+										"Jan", "Feb", "Mar",
+										"Apr", "May", "Jun", "Jul",
+										"Aug", "Sept", "Oct",
+										"Nov", "Dec"
+										];
+										var recordDate = elvigia[x].date;
+
+										var res = recordDate.split("/");
+
+										var monthname = monthNames[res[1] - 1];
+
+										%>
+										<%= monthname + " " + res[0] + ", " + res[2]%>
+										</a>
+										<p id="ev<%=x+1%>" class="color-box">
+											<script type="text/javascript">
+												loadListColor("ev<%=x+1%>", <%=elvigia[x].bacteriologico%>);
+											</script>
+										</h4>
+									</div>
+									<div id="elvigiacollapse<%=x+1%>" class="panel-collapse collapse">
+										<div class="panel-body">
+											<h5>Bacteriologico: <%= elvigia[x].bacteriologico%></h5>
+											<h5>Temperatura: <%= elvigia[x].temperatura %></h5>
+											<h5>Potencial: <%= elvigia[x].potencial %></h5>
+											<h5>Conductividad: <%= elvigia[x].conductividad %></h5>
+											<h5>Oxigeno_disuelto: <%= elvigia[x].oxigeno_disuelto%></h5>
+											<h5>Saturacion_oxigeno: <%=elvigia[x].saturacion_oxigeno%></h5>
+											<h5>Tds: <%= elvigia[x].tds %></h5>
+											<h5>Salinidad: <%= elvigia[x].salinidad %></h5>
+											<h5>Presion: <%= elvigia[x].presion  %></h5>
+											<h5>Densidad: <%= elvigia[x].densidad %></h5>
+											<h5>Excel Sheet: <%= elvigia[x].file %></h5>
+										</div>
+									</div>
+								</div>
+								<%}%>
+							</div>
+						</div>
+
+						<div id="sanantonio" style="display: none">
+							<div>
+								<h3>San Antonio Beach</h3>
+							</div>
+
+							<div class="panel-group" id="accordion5">
+
+								<% for(var x= 0; x< sanantonio.length; x++){ %>
+
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a  data-toggle="collapse" data-parent="#accordion5" href="#antoniocollapse<%=x+1%>">
+
+											<%
+											var monthNames = [
+											"Jan", "Feb", "Mar",
+											"Apr", "May", "Jun", "Jul",
+											"Aug", "Sept", "Oct",
+											"Nov", "Dec"
+											];
+											var recordDate = sanantonio[x].date;
+
+											var res = recordDate.split("/");
+
+											var monthname = monthNames[res[1] - 1];
+
+
+											%>
+											<%= monthname + " " + res[0] + ", " + res[2]%>
+											</a>
+											<p id="sa<%=x+1%>" class="color-box">
+												<script type="text/javascript">
+													loadListColor("sa<%=x+1%>", <%=sanantonio[x].bacteriologico%>);
+												</script>
+											</h4>
+										</div>
+										<div id="antoniocollapse<%=x+1%>" class="panel-collapse collapse">
+											<div class="panel-body">
+												<h5>Bacteriologico: <%= sanantonio[x].bacteriologico%></h5>
+												<h5>Temperatura: <%= sanantonio[x].temperatura %></h5>
+												<h5>Potencial: <%= sanantonio[x].potencial %></h5>
+												<h5>Conductividad: <%= sanantonio[x].conductividad %></h5>
+												<h5>Oxigeno_disuelto: <%= sanantonio[x].oxigeno_disuelto%></h5>
+												<h5>Saturacion_oxigeno: <%=sanantonio[x].saturacion_oxigeno%></h5>
+												<h5>Tds: <%= sanantonio[x].tds %></h5>
+												<h5>Salinidad: <%= sanantonio[x].salinidad %></h5>
+												<h5>Presion: <%= sanantonio[x].presion  %></h5>
+												<h5>Densidad: <%= sanantonio[x].densidad %></h5>
+												<h5>Excel Sheet: <%= sanantonio[x].file %></h5>
+											</div>
+										</div>
+									</div>
+									<%}%>
+								</div>
+							</div>
+						</div>
+
+						</div>
+
+						<div>
+
+
+
+
+						<%
+						var ef_b,pm_b,ca_b,ev_b,sa_b;
+
+						ef_b =pm_b = ca_b = ev_b= sa_b = -5;
+
+
+						if ( elfaro != '' )
+							ef_b = elfaro[0].bacteriologico;
+						if ( parque != '')
+							pm_b = parque[0].bacteriologico;
+						if (canada != '')
+							ca_b = canada[0].bacteriologico;
+						if (elvigia != '')
+							ev_b = elvigia[0].bacteriologico;
+						if (sanantonio != '')
+							sa_b = sanantonio[0].bacteriologico;
+						%>
+
+						<script>
+						changeColor(<%=ef_b%>,<%=pm_b%>,<%=ca_b%>,
+								<%=ev_b%>, <%=sa_b%>);
+						</script>
+
+							<% include partials/footer %>

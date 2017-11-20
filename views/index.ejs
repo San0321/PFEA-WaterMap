@@ -109,16 +109,36 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 						</div>
 						<div id="elfarocollapse<%=x+1%>" class="panel-collapse collapse">
 							<div class="panel-body">
-								<h5>Bacteriologico: <%= elfaro[x].bacteriologico%></h5>
-								<h5>Temperatura: <%= elfaro[x].temperatura %></h5>
-								<h5>Potencial: <%= elfaro[x].potencial %></h5>
-								<h5>Conductividad: <%= elfaro[x].conductividad %></h5>
-								<h5>Oxigeno_disuelto: <%= elfaro[x].oxigeno_disuelto%></h5>
-								<h5>Saturacion_oxigeno: <%=elfaro[x].saturacion_oxigeno%></h5>
-								<h5>Tds: <%= elfaro[x].tds %></h5>
-								<h5>Salinidad: <%= elfaro[x].salinidad %></h5>
-								<h5>Presion: <%= elfaro[x].presion  %></h5>
-								<h5>Densidad: <%= elfaro[x].densidad %></h5>
+                                                                <% if (elfaro[x].bacteriologico) { %>
+        <h5>Bacteriologico: <%= elfaro[x].bacteriologico%></h5>
+        <% } %>
+        <% if (elfaro[x].temperatura) { %>
+        <h5>Temperatura: <%= elfaro[x].temperatura %></h5>
+        <% } %>
+        <% if (elfaro[x].potencial) { %>
+         <h5>Potencial: <%= elfaro[x].potencial %></h5>
+        <% } %>
+        <% if (elfaro[x].conductividad) { %>
+         <h5>Conductividad: <%= elfaro[x].conductividad %></h5>
+        <% } %>
+        <% if (elfaro[x].oxigeno_disuelto) { %>
+         <h5>Oxigeno_disuelto: <%= elfaro[x].oxigeno_disuelto%></h5>
+        <% } %>
+        <% if (elfaro[x].saturacion_oxigeno) { %>
+         <h5>Saturacion_oxigeno: <%=elfaro[x].saturacion_oxigeno%></h5>
+        <% } %>
+        <% if (elfaro[x].tds) { %>
+         <h5>Tds: <%= elfaro[x].tds %></h5>
+        <% } %>
+        <% if (elfaro[x].salinidad) { %>
+         <h5>Salinidad:<%= elfaro[x].salinidad %></h5>
+        <% } %>
+        <% if (elfaro[x].presion) { %>
+         <h5>Presion:<%= elfaro[x].presion  %></h5>
+        <% } %>
+        <% if (elfaro[x].densidad) { %>
+         <h5>Densidad:<%= elfaro[x].densidad %></h5>
+        <% } %>
 								<h5>Excel Sheet: <%= elfaro[x].file %></h5>
 							</div>
 						</div>
@@ -163,16 +183,36 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 							</div>
 							<div id="parquecollapse<%=x+1%>" class="panel-collapse collapse">
 								<div class="panel-body">
-									<h5>Bacteriologico: <%= parque[x].bacteriologico%></h5>
-									<h5>Temperatura: <%= parque[x].temperatura %></h5>
-									<h5>Potencial: <%= parque[x].potencial %></h5>
-									<h5>Conductividad: <%= parque[x].conductividad %></h5>
-									<h5>Oxigeno_disuelto: <%= parque[x].oxigeno_disuelto%></h5>
-									<h5>Saturacion_oxigeno: <%=parque[x].saturacion_oxigeno%></h5>
-									<h5>Tds: <%= parque[x].tds %></h5>
-									<h5>Salinidad: <%= parque[x].salinidad %></h5>
-									<h5>Presion: <%= parque[x].presion  %></h5>
-									<h5>Densidad: <%= parque[x].densidad %></h5>
+                                                                        <% if (parque[x].bacteriologico) { %>
+        <h5>Bacteriologico: <%= parque[x].bacteriologico%></h5>
+        <% } %>
+        <% if (parque[x].temperatura) { %>
+        <h5>Temperatura: <%= parque[x].temperatura %></h5>
+        <% } %>
+        <% if (parque[x].potencial) { %>
+         <h5>Potencial: <%= parque[x].potencial %></h5>
+        <% } %>
+        <% if (parque[x].conductividad) { %>
+         <h5>Conductividad: <%= parque[x].conductividad %></h5>
+        <% } %>
+        <% if (parque[x].oxigeno_disuelto) { %>
+         <h5>Oxigeno_disuelto: <%= parque[x].oxigeno_disuelto%></h5>
+        <% } %>
+        <% if (parque[x].saturacion_oxigeno) { %>
+         <h5>Saturacion_oxigeno: <%=parque[x].saturacion_oxigeno%></h5>
+        <% } %>
+        <% if (parque[x].tds) { %>
+         <h5>Tds: <%= parque[x].tds %></h5>
+        <% } %>
+        <% if (parque[x].salinidad) { %>
+         <h5>Salinidad:<%= parque[x].salinidad %></h5>
+        <% } %>
+        <% if (parque[x].presion) { %>
+         <h5>Presion:<%= parque[x].presion  %></h5>
+        <% } %>
+        <% if (parque[x].densidad) { %>
+         <h5>Densidad:<%= parque[x].densidad %></h5>
+        <% } %>
 									<h5>Excel Sheet: <%= parque[x].file %></h5>
 								</div>
 							</div>
@@ -220,16 +260,36 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 								</div>
 								<div id="canadacollapse<%=x+1%>" class="panel-collapse collapse">
 									<div class="panel-body">
-										<h5>Bacteriologico: <%= canada[x].bacteriologico%></h5>
-										<h5>Temperatura: <%= canada[x].temperatura %></h5>
-										<h5>Potencial: <%= canada[x].potencial %></h5>
-										<h5>Conductividad: <%= canada[x].conductividad %></h5>
-										<h5>Oxigeno_disuelto: <%= canada[x].oxigeno_disuelto%></h5>
-										<h5>Saturacion_oxigeno: <%=canada[x].saturacion_oxigeno%></h5>
-										<h5>Tds: <%= canada[x].tds %></h5>
-										<h5>Salinidad: <%= canada[x].salinidad %></h5>
-										<h5>Presion: <%= canada[x].presion  %></h5>
-										<h5>Densidad: <%= canada[x].densidad %></h5>
+                                                                                <% if (canada[x].bacteriologico) { %>
+        <h5>Bacteriologico: <%= canada[x].bacteriologico%></h5>
+        <% } %>
+        <% if (canada[x].temperatura) { %>
+        <h5>Temperatura: <%= canada[x].temperatura %></h5>
+        <% } %>
+        <% if (canada[x].potencial) { %>
+         <h5>Potencial: <%= canada[x].potencial %></h5>
+        <% } %>
+        <% if (canada[x].conductividad) { %>
+         <h5>Conductividad: <%= canada[x].conductividad %></h5>
+        <% } %>
+        <% if (canada[x].oxigeno_disuelto) { %>
+         <h5>Oxigeno_disuelto: <%= canada[x].oxigeno_disuelto%></h5>
+        <% } %>
+        <% if (canada[x].saturacion_oxigeno) { %>
+         <h5>Saturacion_oxigeno: <%=canada[x].saturacion_oxigeno%></h5>
+        <% } %>
+        <% if (canada[x].tds) { %>
+         <h5>Tds: <%= canada[x].tds %></h5>
+        <% } %>
+        <% if (canada[x].salinidad) { %>
+         <h5>Salinidad:<%= canada[x].salinidad %></h5>
+        <% } %>
+        <% if (canada[x].presion) { %>
+         <h5>Presion:<%= canada[x].presion  %></h5>
+        <% } %>
+        <% if (canada[x].densidad) { %>
+         <h5>Densidad:<%= canada[x].densidad %></h5>
+        <% } %>
 										<h5>Excel Sheet: <%= canada[x].file %></h5>
 									</div>
 								</div>
@@ -276,17 +336,37 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 									</div>
 									<div id="elvigiacollapse<%=x+1%>" class="panel-collapse collapse">
 										<div class="panel-body">
-											<h5>Bacteriologico: <%= elvigia[x].bacteriologico%></h5>
-											<h5>Temperatura: <%= elvigia[x].temperatura %></h5>
-											<h5>Potencial: <%= elvigia[x].potencial %></h5>
-											<h5>Conductividad: <%= elvigia[x].conductividad %></h5>
-											<h5>Oxigeno_disuelto: <%= elvigia[x].oxigeno_disuelto%></h5>
-											<h5>Saturacion_oxigeno: <%=elvigia[x].saturacion_oxigeno%></h5>
-											<h5>Tds: <%= elvigia[x].tds %></h5>
-											<h5>Salinidad: <%= elvigia[x].salinidad %></h5>
-											<h5>Presion: <%= elvigia[x].presion  %></h5>
-											<h5>Densidad: <%= elvigia[x].densidad %></h5>
-											<h5>Excel Sheet: <%= elvigia[x].file %></h5>
+								        <% if (elvigia[x].bacteriologico) { %>
+                                                                                <h5>Bacteriologico: <%= elvigia[x].bacteriologico%></h5>
+                                                                                <% } %>
+        <% if (elvigia[x].temperatura) { %>
+        <h5>Temperatura: <%= elvigia[x].temperatura %></h5>
+        <% } %>
+        <% if (elvigia[x].potencial) { %>
+         <h5>Potencial: <%= elvigia[x].potencial %></h5>
+        <% } %>
+        <% if (elvigia[x].conductividad) { %>
+         <h5>Conductividad: <%= elvigia[x].conductividad %></h5>
+        <% } %>
+        <% if (elvigia[x].oxigeno_disuelto) { %>
+         <h5>Oxigeno_disuelto: <%= elvigia[x].oxigeno_disuelto%></h5>
+        <% } %>
+        <% if (elvigia[x].saturacion_oxigeno) { %>
+         <h5>Saturacion_oxigeno: <%=elvigia[x].saturacion_oxigeno%></h5>
+        <% } %>
+        <% if (elvigia[x].tds) { %>
+         <h5>Tds: <%= elvigia[x].tds %></h5>
+        <% } %>
+        <% if (elvigia[x].salinidad) { %>
+         <h5>Salinidad:<%= elvigia[x].salinidad %></h5>
+        <% } %>
+        <% if (elvigia[x].presion) { %>
+         <h5>Presion:<%= elvigia[x].presion  %></h5>
+        <% } %>
+        <% if (elvigia[x].densidad) { %>
+         <h5>Densidad:<%= elvigia[x].densidad %></h5>
+        <% } %>
+        											<h5>Excel Sheet: <%= elvigia[x].file %></h5>
 										</div>
 									</div>
 								</div>
@@ -333,16 +413,36 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 										</div>
 										<div id="antoniocollapse<%=x+1%>" class="panel-collapse collapse">
 											<div class="panel-body">
-												<h5>Bacteriologico: <%= sanantonio[x].bacteriologico%></h5>
-												<h5>Temperatura: <%= sanantonio[x].temperatura %></h5>
-												<h5>Potencial: <%= sanantonio[x].potencial %></h5>
-												<h5>Conductividad: <%= sanantonio[x].conductividad %></h5>
-												<h5>Oxigeno_disuelto: <%= sanantonio[x].oxigeno_disuelto%></h5>
-												<h5>Saturacion_oxigeno: <%=sanantonio[x].saturacion_oxigeno%></h5>
-												<h5>Tds: <%= sanantonio[x].tds %></h5>
-												<h5>Salinidad: <%= sanantonio[x].salinidad %></h5>
-												<h5>Presion: <%= sanantonio[x].presion  %></h5>
-												<h5>Densidad: <%= sanantonio[x].densidad %></h5>
+                                                                                                <% if (sanantonio[x].bacteriologico) { %>
+        <h5>Bacteriologico: <%= sanantonio[x].bacteriologico%></h5>
+        <% } %>
+        <% if (sanantonio[x].temperatura) { %>
+        <h5>Temperatura: <%= sanantonio[x].temperatura %></h5>
+        <% } %>
+        <% if (sanantonio[x].potencial) { %>
+         <h5>Potencial: <%= sanantonio[x].potencial %></h5>
+        <% } %>
+        <% if (sanantonio[x].conductividad) { %>
+         <h5>Conductividad: <%= sanantonio[x].conductividad %></h5>
+        <% } %>
+        <% if (sanantonio[x].oxigeno_disuelto) { %>
+         <h5>Oxigeno_disuelto: <%= sanantonio[x].oxigeno_disuelto%></h5>
+        <% } %>
+        <% if (sanantonio[x].saturacion_oxigeno) { %>
+         <h5>Saturacion_oxigeno: <%=sanantonio[x].saturacion_oxigeno%></h5>
+        <% } %>
+        <% if (sanantonio[x].tds) { %>
+         <h5>Tds: <%= sanantonio[x].tds %></h5>
+        <% } %>
+        <% if (sanantonio[x].salinidad) { %>
+         <h5>Salinidad:<%= sanantonio[x].salinidad %></h5>
+        <% } %>
+        <% if (sanantonio[x].presion) { %>
+         <h5>Presion:<%= sanantonio[x].presion  %></h5>
+        <% } %>
+        <% if (sanantonio[x].densidad) { %>
+         <h5>Densidad:<%= sanantonio[x].densidad %></h5>
+        <% } %>
 												<h5>Excel Sheet: <%= sanantonio[x].file %></h5>
 											</div>
 										</div>

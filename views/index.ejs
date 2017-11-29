@@ -67,6 +67,12 @@
         playasMarker.addListener('click', function() {
           playasInfoWindow.open(map, playasMarker);
         });
+        playasMarker.addListener('mouseover', function() {
+            playasInfoWindow.open(map, this);
+        });
+        playasMarker.addListener('mouseout', function() {
+            playasInfoWindow.close();
+        });
 
         var rosaritoInfo = '<div id="content">'+
             '<div id="siteNotice">'+
@@ -88,6 +94,12 @@
         rosaritoMarker.addListener('click', function() {
           rosaritoInfoWindow.open(map, rosaritoMarker);
         });
+        rosaritoMarker.addListener('mouseover', function() {
+            rosaritoInfoWindow.open(map, this);
+        });
+        rosaritoMarker.addListener('mouseout', function() {
+            rosaritoInfoWindow.close();
+        });
 
         var antonioInfo = '<div id="content">'+
             '<div id="siteNotice">'+
@@ -108,6 +120,12 @@
         });
         antonioMarker.addListener('click', function() {
           antonioInfoWindow.open(map, antonioMarker);
+        });
+        antonioMarker.addListener('mouseover', function() {
+            antonioInfoWindow.open(map, this);
+        });
+        antonioMarker.addListener('mouseout', function() {
+            antonioInfoWindow.close();
         });
 
         google.maps.event.addDomListener(window, 'resize', function() {

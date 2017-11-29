@@ -59,7 +59,8 @@
         });
         for (var marker in markers) {
           marker = markers[marker];
-          var info = '<div id="content">'+
+          console.log(marker.name);
+          var html = '<div id="content">'+
               '<div id="siteNotice">'+
               '</div>'+
               '<h1 id="firstHeading" class="firstHeading">' + marker.name + '</h1>'+
@@ -67,20 +68,22 @@
               '<p>Data here</p>'+
               '</div>'+
               '</div>';
-          var infoWindow = new google.maps.InfoWindow({
-            content: info
-          });
-          console.log(marker.pos);
+          var infoWindow = new google.maps.InfoWindow();
+          
           var _marker = new google.maps.Marker({
             position: marker.pos,
             map: map,
             title: marker.name,
+            html: html,
           });
           _marker.addListener('click', function() {
+            infoWindow.setContent(this.html);
             infoWindow.open(map, this);
           });
           _marker.addListener('mouseover', function() {
+            infoWindow.setContent(this.html);
             infoWindow.open(map, this);
+
           });
           _marker.addListener('mouseout', function() {
             infoWindow.close();

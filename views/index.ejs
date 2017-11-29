@@ -89,9 +89,9 @@
             infoWindow.close();
           });
         };
-
+        var currCenter = map.getCenter();
         google.maps.event.addDomListener(window, 'resize', function() {
-          map.setCenter(center);
+          map.setCenter(currCenter);
         });
       }
     </script>

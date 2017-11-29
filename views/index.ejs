@@ -29,17 +29,27 @@
     <div id="map" style="z-index: 900"></div>
     <script>
       function initMap() {
-        /*var tijuana = {lat: 32.50980556, lng: -117.11444444};*/
-        var tijuana = {lat: 32.441964, lng: -117.089977};
-        var playasdetijuana = {lat: 32.517202, lng: -117.119909};
-        var rosarito = {lat: 32.364263, lng:-117.063413};
-        var antonio = {lat: 32.433887, lng:-117.099547};
+        var markers = [
+          {
+            name: "Playas de Tijuana",
+            pos: {lat: 32.517202, lng: -117.119909},
+          },
+          {
+            name: "Rosarito Beach",
+            pos: {lat: 32.364263, lng:-117.063413},
+          },
+          {
+            name: "San Antonio del Mar",
+            pos: {lat: 32.433887, lng:-117.099547},
+          },
+        ];
         
         var mapOptions = {
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: true
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true
         };
+        var tijuana = {lat: 32.441964, lng: -117.089977};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 11,
           center: tijuana, 
@@ -47,86 +57,35 @@
           scrollwheel: false,
           fullscreenControl: false
         });
-        var playasInfo = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Playas de Tijuana</h1>'+
-            '<div id="bodyContent">'+
-            '<p>Data here</p>'+
-            '</div>'+
-            '</div>';
-
-        var playasInfoWindow = new google.maps.InfoWindow({
-          content: playasInfo
-        });
-        var playasMarker = new google.maps.Marker({
-          position: playasdetijuana,
-          map: map,
-          title: 'Playas de Tijuana'
-        });
-        playasMarker.addListener('click', function() {
-          playasInfoWindow.open(map, playasMarker);
-        });
-        playasMarker.addListener('mouseover', function() {
-            playasInfoWindow.open(map, this);
-        });
-        playasMarker.addListener('mouseout', function() {
-            playasInfoWindow.close();
-        });
-
-        var rosaritoInfo = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Rosarito Beach</h1>'+
-            '<div id="bodyContent">'+
-            '<p>Data here</p>'+
-            '</div>'+
-            '</div>';
-
-        var rosaritoInfoWindow = new google.maps.InfoWindow({
-          content: rosaritoInfo
-        });
-        var rosaritoMarker = new google.maps.Marker({
-          position: rosarito,
-          map: map,
-          title: 'Rosarito Beach'
-        });
-        rosaritoMarker.addListener('click', function() {
-          rosaritoInfoWindow.open(map, rosaritoMarker);
-        });
-        rosaritoMarker.addListener('mouseover', function() {
-            rosaritoInfoWindow.open(map, this);
-        });
-        rosaritoMarker.addListener('mouseout', function() {
-            rosaritoInfoWindow.close();
-        });
-
-        var antonioInfo = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">San Antonio del Mar</h1>'+
-            '<div id="bodyContent">'+
-            '<p>Data here</p>'+
-            '</div>'+
-            '</div>';
-
-        var antonioInfoWindow = new google.maps.InfoWindow({
-          content: antonioInfo
-        });
-        var antonioMarker = new google.maps.Marker({
-          position: antonio,
-          map: map,
-          title: 'San Antonio del Mar'
-        });
-        antonioMarker.addListener('click', function() {
-          antonioInfoWindow.open(map, antonioMarker);
-        });
-        antonioMarker.addListener('mouseover', function() {
-            antonioInfoWindow.open(map, this);
-        });
-        antonioMarker.addListener('mouseout', function() {
-            antonioInfoWindow.close();
-        });
+        for (var marker in markers) {
+          marker = markers[marker];
+          var info = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">' + marker.name + '</h1>'+
+              '<div id="bodyContent">'+
+              '<p>Data here</p>'+
+              '</div>'+
+              '</div>';
+          var infoWindow = new google.maps.InfoWindow({
+            content: info
+          });
+          console.log(marker.pos);
+          var _marker = new google.maps.Marker({
+            position: marker.pos,
+            map: map,
+            title: marker.name,
+          });
+          _marker.addListener('click', function() {
+            infoWindow.open(map, this);
+          });
+          _marker.addListener('mouseover', function() {
+            infoWindow.open(map, this);
+          });
+          _marker.addListener('mouseout', function() {
+            infoWindow.close();
+          });
+        };
 
         google.maps.event.addDomListener(window, 'resize', function() {
           map.setCenter(center);

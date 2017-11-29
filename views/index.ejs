@@ -1,26 +1,112 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>PFEA Water Quality Map</title>
     <style>
+        body {
+          margin: 0 auto;
+        }
+
        #map {
-        height: 400px;
+        height: 100vh;
         width: 100%;
        }
+
+      a[href^="http://maps.google.com/maps"]{display:none !important}
+      a[href^="https://maps.google.com/maps"]{display:none !important}
+
+      .gmnoprint a, .gmnoprint span, .gm-style-cc {
+        display:none;
+      }
+      .gmnoprint div {
+        background:none !important;
+      } 
     </style>
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
+    <a href="http://pfea.org" target="_blank"><img src="img/pfea-logo.png" width="40" style="position: absolute; top: 10px; left: 10px; z-index: 9999"></a>
+
+    <div id="map" style="z-index: 900"></div>
     <script>
       function initMap() {
-        var tijuana = {lat: 32.50980556, lng: -117.11444444};
+        /*var tijuana = {lat: 32.50980556, lng: -117.11444444};*/
+        var tijuana = {lat: 32.441964, lng: -117.089977};
+        var playasdetijuana = {lat: 32.517202, lng: -117.119909};
+        var rosarito = {lat: 32.364263, lng:-117.063413};
+        var antonio = {lat: 32.433887, lng:-117.099547};
+        
+        var mapOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
+        };
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          center: tijuana
+          zoom: 11,
+          center: tijuana, 
+          mapTypeControl: false,
+          scrollwheel: false
         });
-        var marker = new google.maps.Marker({
-          position: tijuana,
-          map: map
+        var playasInfo = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Playas de Tijuana</h1>'+
+            '<div id="bodyContent">'+
+            '<p>Data here</p>'+
+            '</div>'+
+            '</div>';
+
+        var playasInfoWindow = new google.maps.InfoWindow({
+          content: playasInfo
+        });
+        var playasMarker = new google.maps.Marker({
+          position: playasdetijuana,
+          map: map,
+          title: 'Playas de Tijuana'
+        });
+        playasMarker.addListener('click', function() {
+          playasInfoWindow.open(map, playasMarker);
+        });
+
+        var rosaritoInfo = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Rosarito Beach</h1>'+
+            '<div id="bodyContent">'+
+            '<p>Data here</p>'+
+            '</div>'+
+            '</div>';
+
+        var rosaritoInfoWindow = new google.maps.InfoWindow({
+          content: rosaritoInfo
+        });
+        var rosaritoMarker = new google.maps.Marker({
+          position: rosarito,
+          map: map,
+          title: 'Rosarito Beach'
+        });
+        rosaritoMarker.addListener('click', function() {
+          rosaritoInfoWindow.open(map, rosaritoMarker);
+        });
+
+        var antonioInfo = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">San Antonio del Mar</h1>'+
+            '<div id="bodyContent">'+
+            '<p>Data here</p>'+
+            '</div>'+
+            '</div>';
+
+        var antonioInfoWindow = new google.maps.InfoWindow({
+          content: antonioInfo
+        });
+        var antonioMarker = new google.maps.Marker({
+          position: antonio,
+          map: map,
+          title: 'San Antonio del Mar'
+        });
+        antonioMarker.addListener('click', function() {
+          antonioInfoWindow.open(map, antonioMarker);
         });
       }
     </script>

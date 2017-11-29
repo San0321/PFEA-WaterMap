@@ -108,6 +108,10 @@
         antonioMarker.addListener('click', function() {
           antonioInfoWindow.open(map, antonioMarker);
         });
+
+        google.maps.event.addDomListener(window, 'resize', function() {
+          map.setCenter(center);
+        });
       }
     </script>
     <script async defer

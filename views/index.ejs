@@ -12,6 +12,10 @@
         width: 100%;
        }
 
+       .content {
+        z-index: 999999999 !important;
+       }
+
       a[href^="http://maps.google.com/maps"]{display:none !important}
       a[href^="https://maps.google.com/maps"]{display:none !important}
 
@@ -24,23 +28,28 @@
     </style>
   </head>
   <body>
-    <a href="http://pfea.org" target="_blank"><img src="assets/logo.png" width="140" style="position: absolute; top: 10px; left: 10px; z-index: 9999"></a>
+    <a href="http://pfea.org" target="_blank"><img src="assets/logo.png" width="140" style="position: absolute; top: 10px; left: 10px; z-index: 2"></a>
 
-    <div id="map" style="z-index: 900"></div>
+    <a href=""><img src="img/info-button.svg" width="30" style="position: absolute; bottom: 10px; left: 10px; z-index: 2;"></a>
+
+    <div id="map" style="z-index: 1"></div>
     <script>
       function initMap() {
         var markers = [
           {
             name: "Playas de Tijuana",
             pos: {lat: 32.517202, lng: -117.119909},
+            icon: "img/orange-pin.svg",
           },
           {
             name: "Rosarito Beach",
             pos: {lat: 32.364263, lng:-117.063413},
+            icon: "img/green-pin.svg",
           },
           {
             name: "San Antonio del Mar",
             pos: {lat: 32.433887, lng:-117.099547},
+            icon: "img/yellow-pin.svg",
           },
         ];
         
@@ -75,6 +84,7 @@
             map: map,
             title: marker.name,
             html: html,
+            icon: marker.icon,
           });
           _marker.addListener('click', function() {
             infoWindow.setContent(this.html);

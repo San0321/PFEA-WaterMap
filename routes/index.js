@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Report = require("../models/report");
+var gsjson = require('google-spreadsheet-to-json');
 
 
 var data = [];
@@ -10,9 +11,24 @@ var data = [];
 router.get('/', function(req, res, next) {
     console.error("in index");
     grabEachSite(req,res);
-    //res.render('index');
-});
+    //res.render('index')
 
+    gsjson({
+      // using temporary copy of PFEA data
+      // will change to mlab soon and need to connect to the frontend
+      spreadsheetId: '1LB7X3KeRmaXgc5a3kYCUFpUb-cLK1Lt3AfrrGyecdY8',
+      worksheet: 1
+    })
+    .then(function(result) {
+      // This would show all the data in the spreadsheet as a json
+      console.log(result);
+    })
+    .catch(function(err) {
+      console.log(err.message);
+      console.log(err.stack);
+    });
+
+});
 
 function sortByDate(){
    return function(a,b){

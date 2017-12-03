@@ -1,113 +1,50 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>PFEA Water Quality Map</title>
-    <style>
-        body {
-          margin: 0 auto;
-        }
-
-       #map {
-        height: 100vh;
-        width: 100%;
-       }
-
-       .content {
-        z-index: 999999999 !important;
-       }
-
-      a[href^="http://maps.google.com/maps"]{display:none !important}
-      a[href^="https://maps.google.com/maps"]{display:none !important}
-
-      .gmnoprint a, .gmnoprint span, .gm-style-cc {
-        display:none;
-      }
-      .gmnoprint div {
-        background:none !important;
-      } 
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,600" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link href="css/watermap.css" rel="stylesheet">
   </head>
+
   <body>
+    <!-- Logo -->
     <a href="http://pfea.org" target="_blank"><img src="assets/logo.png" width="140" style="position: absolute; top: 10px; left: 10px; z-index: 2"></a>
-    <a href=""><img src="img/info-button.svg" width="30" style="position: absolute; bottom: 10px; left: 10px; z-index: 2;"></a>
-    
-    <div id="sanantonio" style="display:none" data-bacteria="<%= sanantonio[0].bacteriologico %>" ></div>
 
+    <!-- Info Button / Legend -->
+    <img src="img/info-button.svg" width="30" class="my_popup_open" style="position: absolute; bottom: 10px; left: 10px; z-index: 2; cursor: pointer;">
+
+    <!-- Legend Content-->
+    <div id="my_popup">
+      <p class="my_popup_close">&times;</p>
+      <h1 class="legend">Legend</h1>
+      <p>
+        <ul class="legend">
+          <li id="green"><b>Clean</b><br>0 - 400 cfu/ml</li>
+          <li id="yellow"><b>Fair</b><br>500 - 600 cfu/ml</li>
+          <li id="orange"><b>Somewhat Polluted</b><br>700 - 900 cfu/ml</li>
+          <li id="red"><b>Polluted</b><br>1000+ cfu/ml</li>
+        </ul></p>
+    </div>
+
+    <!-- Map -->
     <div id="map" style="z-index: 1"></div>
-    <script>
-      function initMap() {
-        var markers = [
-          {
-            name: "Playas de Tijuana",
-            pos: {lat: 32.517202, lng: -117.119909},
-            icon: "img/orange-pin.svg",
-          },
-          {
-            name: "Rosarito Beach",
-            pos: {lat: 32.364263, lng:-117.063413},
-            icon: "img/green-pin.svg",
-          },
-          {
-            name: "San Antonio del Mar",
-            pos: {lat: 32.433887, lng:-117.099547},
-            icon: "img/yellow-pin.svg",
-          },
-        ];
-        
-        var mapOptions = {
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          disableDefaultUI: true
-        };
-        var tijuana = {lat: 32.441964, lng: -117.089977};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 11,
-          center: tijuana, 
-          mapTypeControl: false,
-          scrollwheel: false,
-          fullscreenControl: false
-        });
-        for (var marker in markers) {
-          marker = markers[marker];
-          console.log(marker.name);
-          var html = '<div id="content">'+
-              '<div id="siteNotice">'+
-              '</div>'+
-              '<h1 id="firstHeading" class="firstHeading">' + marker.name + '</h1>'+
-              '<div id="bodyContent">'+
-              '<p>Data here</p>'+
-              '</div>'+
-              '</div>';
-          var infoWindow = new google.maps.InfoWindow();
-          
-          var _marker = new google.maps.Marker({
-            position: marker.pos,
-            map: map,
-            title: marker.name,
-            html: html,
-            icon: marker.icon,
-          });
-          _marker.addListener('click', function() {
-            infoWindow.setContent(this.html);
-            infoWindow.open(map, this);
-          });
-          _marker.addListener('mouseover', function() {
-            infoWindow.setContent(this.html);
-            infoWindow.open(map, this);
 
-          });
-          _marker.addListener('mouseout', function() {
-            infoWindow.close();
-          });
-        };
-        var currCenter = map.getCenter();
-        google.maps.event.addDomListener(window, 'resize', function() {
-          map.setCenter(currCenter);
-        });
-      }
-    </script>
+    <script src="js/maps.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu7Hwq7jgsjGyFqDUPaOOtiogq1tJJsAo&callback=initMap">
     </script>
+    <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('#my_popup').popup({
+          transition: 'all 0.3s'
+        });
+      });
+    </script>
+
   </body>
 </html>

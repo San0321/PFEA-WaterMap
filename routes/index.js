@@ -10,24 +10,10 @@ var data = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {
     console.error("in index");
-    grabEachSite(req,res);
+    //var item = getData('1LB7X3KeRmaXgc5a3kYCUFpUb-cLK1Lt3AfrrGyecdY8');
+    myGrabEachSite(req, res);
+    //grabEachSite(req,res, item);
     //res.render('index')
-
-    gsjson({
-      // using temporary copy of PFEA data
-      // will change to mlab soon and need to connect to the frontend
-      spreadsheetId: '1LB7X3KeRmaXgc5a3kYCUFpUb-cLK1Lt3AfrrGyecdY8',
-      worksheet: 1
-    })
-    .then(function(result) {
-      // This would show all the data in the spreadsheet as a json
-      console.log(result);
-    })
-    .catch(function(err) {
-      console.log(err.message);
-      console.log(err.stack);
-    });
-
 });
 
 function sortByDate(){
@@ -59,7 +45,23 @@ function sortByDate(){
    }
 }
 
+function myGrabEachSite(req, res) {
+    console.log("going into myGrabEachSite");
 
+    gsjson({
+      // will change to mlab soon and need to connect to the frontend
+      spreadsheetId: '1yREPVgamhveIn5-xdt3YltuvpIYyZLUQsIA7CwBJ_Dc',
+      worksheet: 0
+    })
+    .then(function(data) {    
+      res.render('index', {'waterdata': data});
+    })
+    .catch(function(err) {
+      console.log(err.message);
+      console.log(err.stack);
+    });
+  }
+    
 function grabEachSite(req,res){
 
     console.log("starting to grab each site");
@@ -126,6 +128,10 @@ function grabEachSite(req,res){
             results[3].sort(sortByDate());
             results[4].sort(sortByDate());
             console.log("Finish Sorting");
+            console.log(results[0]);
+            console.log(results[1]);
+            console.log(results[2]);
+            
             res.render('index', { "elfaro": results[0],
                                   "canada": results[1],
                                   "sanantonio": results[2],

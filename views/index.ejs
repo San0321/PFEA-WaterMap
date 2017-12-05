@@ -30,91 +30,154 @@
 
     <!-- Map -->
     <div id="map" style="z-index: 1"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu7Hwq7jgsjGyFqDUPaOOtiogq1tJJsAo&callback=initMap">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu7Hwq7jgsjGyFqDUPaOOtiogq1tJJsAo">
     </script>
-    <script type="text/javascript">
-      function initMap(waterdata) {
-          console.log(JSON.stringify(waterdata));
-          var markers = [];
-          for(var i = 0; i < waterdata.length; i++) {
-              var point = {};
-              point['name']=waterdata[i].name;
-              point['pos']= {lat: waterdata[i].latitude, lng:waterdata[i].longitude};
-              point['date'] = waterdata[i].date;
-              point['cfuVal'] = waterdata[i]['cfu/ml'];
-              if(waterdata[i]['cfu/ml'] <= 400) {
-                point['cfuLabel'] = "Clean";
-                point['icon'] = "img/green-pin.svg";
-              }
-              if(waterdata[i]['cfu/ml'] < 600 && waterdata[i]['cfu/ml'] > 400){
-                point['cfuLabel'] = "Fair";
-                point['icon'] = "img/yellow-pin.svg";
-              }
-              if(waterdata[i]['cfu/ml'] < 900 && waterdata[i]['cfu/ml'] >= 600) {
-                point['cfuLabel'] = "Somewhat Polluted";
-                point['icon'] = "img/orange-pin.svg";
-              }
-              if(waterdata[i]['cfu/ml'] >= 900) {
-                point['cfuLabel'] = "Polluted";
-                point['icon'] = "img/red-pin.svg";
-              }
-              markers.push(point);
+<script type="text/javascript">
+  var sites = {
+      "SAN ANTONIO": {
+          name: "San Antonio del Mar",
+          pos: {
+              lat: 32.433887,
+              lng: -117.099547
+          },
+          icon: "img/yellow-pin.svg",
+          cfuLabel: "Fair",
+          cfuVal: "552 cfu/ml",
+          date: "12/2/17",
+      },
+      "EL VIGIA": {
+          name: "San Antonio del Mar",
+          pos: {
+              lat: 32.423887,
+              lng: -117.099547
+          },
+          icon: "img/yellow-pin.svg",
+          cfuLabel: "Fair",
+          cfuVal: "552 cfu/ml",
+          date: "12/2/17",
+      },
+      "PARQUE MEXICO": {
+          name: "San Antonio del Mar",
+          pos: {
+              lat: 32.434887,
+              lng: -117.099547
+          },
+          icon: "img/yellow-pin.svg",
+          cfuLabel: "Fair",
+          cfuVal: "552 cfu/ml",
+          date: "12/2/17",
+      },
+      "EL FARO": {
+          name: "San Antonio del Mar",
+          pos: {
+              lat: 32.435887,
+              lng: -117.199547
+          },
+          icon: "img/yellow-pin.svg",
+          cfuLabel: "Fair",
+          cfuVal: "552 cfu/ml",
+          date: "12/2/17",
+      },
+      "CAÑADA AZTECA": {
+          name: "San Antonio del Mar",
+          pos: {
+              lat: 32.433587,
+              lng: -117.019547
+          },
+          icon: "img/yellow-pin.svg",
+          cfuLabel: "Fair",
+          cfuVal: "552 cfu/ml",
+          date: "12/2/17",
+      }
+  };
+
+  function initMap(waterdata) {
+      // console.log(JSON.stringify(waterdata));
+      var markers = [];
+      for (var i = 0; i < waterdata.length; i++) {
+          var point = {};
+          var site = sites[waterdata[i].sitio];
+
+          point['name'] = site.name;
+          point['pos'] = site.pos;
+
+          point['date'] = waterdata[i].date;
+          point['cfuVal'] = waterdata[i]['ec[µs/cm]'];
+          if (point['cfuVal'] <= 400) {
+              point['cfuLabel'] = "Clean";
+              point['icon'] = "img/green-pin.svg";
           }
-          
-        var mapOptions = {
+          if (point['cfuVal'] < 600 && point['cfuVal'] > 400) {
+              point['cfuLabel'] = "Fair";
+              point['icon'] = "img/yellow-pin.svg";
+          }
+          if (point['cfuVal'] < 900 && point['cfuVal'] >= 600) {
+              point['cfuLabel'] = "Somewhat Polluted";
+              point['icon'] = "img/orange-pin.svg";
+          }
+          if (point['cfuVal'] >= 900) {
+              point['cfuLabel'] = "Polluted";
+              point['icon'] = "img/red-pin.svg";
+          }
+          markers.push(point);
+      }
+      var mapOptions = {
           zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true
-        };
-        var tijuana = {lat: 32.441964, lng: -117.089977};
-        var map = new google.maps.Map(document.getElementById('map'), {
+      };
+      var tijuana = {
+          lat: 32.441964,
+          lng: -117.089977
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 11,
-          center: tijuana, 
+          center: tijuana,
           mapTypeControl: false,
           scrollwheel: false,
           fullscreenControl: false
-        });
-        for (var marker in markers) {
+      });
+      for (var marker in markers) {
           marker = markers[marker];
           console.log(marker.name);
-          var html = '<div id="content">'+
-              '<h1>' + marker.name + '</h1>'+
-              '<div id="bodyContent">'+
+          var html = '<div id="content">' +
+              '<h1>' + marker.name + '</h1>' +
+              '<div id="bodyContent">' +
               '<h3>' + marker.cfuLabel + '</h3>' +
               '<p>' + marker.cfuVal + '</p>' +
               '<p class="date">' + 'Last updated: ' + marker.date + '</p>' +
-              '</div>'+
+              '</div>' +
               '</div>';
           var infoWindow = new google.maps.InfoWindow();
-          
+
           var _marker = new google.maps.Marker({
-            position: marker.pos,
-            map: map,
-            title: marker.name,
-            html: html,
-            icon: marker.icon,
+              position: marker.pos,
+              map: map,
+              title: marker.name,
+              html: html,
+              icon: marker.icon,
           });
           _marker.addListener('click', function() {
-            infoWindow.setContent(this.html);
-            infoWindow.open(map, this);
+              infoWindow.setContent(this.html);
+              infoWindow.open(map, this);
           });
           _marker.addListener('mouseover', function() {
-            infoWindow.setContent(this.html);
-            infoWindow.open(map, this);
+              infoWindow.setContent(this.html);
+              infoWindow.open(map, this);
 
           });
           _marker.addListener('mouseout', function() {
-            infoWindow.close();
+              infoWindow.close();
           });
-        };
-        var currCenter = map.getCenter();
-        google.maps.event.addDomListener(window, 'resize', function() {
+      };
+      var currCenter = map.getCenter();
+      google.maps.event.addDomListener(window, 'resize', function() {
           map.setCenter(currCenter);
-        });
-      }
+      });
+  }
 
-      initMap(<%-JSON.stringify(waterdata)%>);
-    </script>
+  initMap(<%-JSON.stringify(waterdata)%>);
+</script>
     
     <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>

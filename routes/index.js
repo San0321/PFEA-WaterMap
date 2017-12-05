@@ -49,11 +49,15 @@ function myGrabEachSite(req, res) {
     console.log("going into myGrabEachSite");
 
     gsjson({
-      // will change to mlab soon and need to connect to the frontend
-      spreadsheetId: '1yREPVgamhveIn5-xdt3YltuvpIYyZLUQsIA7CwBJ_Dc',
-      worksheet: 0
+      spreadsheetId: '1Ypdb32yiSeza61aQKiQ36xG7rWTOt7UMYpYUYZZFCvQ',
+      worksheet: 1,
     })
-    .then(function(data) {    
+    .then(function(data) {
+      // Select the last 10 elements.
+      // Get every other element from the last 10.
+      data = data
+        .slice(-10)
+        .filter((site, index) => index % 2 == 1);
       res.render('index', {'waterdata': data});
     })
     .catch(function(err) {

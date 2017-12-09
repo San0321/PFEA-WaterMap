@@ -80,8 +80,11 @@
 
           point['name'] = site.name;
           point['pos'] = site.pos;
+          var date = new Date();
+          date.setTime((waterdata[i].date-(25567 + 1))*86400*1000);
+          waterdata[i].date = (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ';
 
-          point['date'] = waterdata[i].date;
+          point['date'] = waterdata[i].date + waterdata[i].time + " PST";
           point['cfuVal'] = waterdata[i]['ec[µs/cm]'];
           if (point['cfuVal'] <= 400) {
               point['cfuLabel'] = "Clean";

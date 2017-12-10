@@ -1,17 +1,29 @@
 var express = require('express');
 var router = express.Router();
 var Report = require("../models/report");
-var gsjson = require('google-spreadsheet-to-json');
+
 
 
 var data = [];
+var waterdata;
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.error("in index");
+  waterdata = req.app.locals.waterdata;
+  res.render('index', waterdata);
+
+ //   console.error("in index");
+ //   module.exports.myhandler = 
+   // res.render('index', waterdata);
+
+    /*
+    exports.index = function(req, res, next){
+      res.render('index', req.app.locals.waterdata);
+    };
+    */
     //var item = getData('1LB7X3KeRmaXgc5a3kYCUFpUb-cLK1Lt3AfrrGyecdY8');
-    myGrabEachSite(req, res);
+    //myGrabEachSite(req, res);
     //grabEachSite(req,res, item);
     //res.render('index')
 });
@@ -45,26 +57,6 @@ function sortByDate(){
    }
 }
 
-function myGrabEachSite(req, res) {
-    console.log("going into myGrabEachSite");
-
-    gsjson({
-      spreadsheetId: '1Ypdb32yiSeza61aQKiQ36xG7rWTOt7UMYpYUYZZFCvQ',
-      worksheet: 1,
-    })
-    .then(function(data) {
-      // Select the last 10 elements.
-      // Get every other element from the last 10.
-      data = data
-        .slice(-10)
-        .filter((site, index) => index % 2 == 1);
-      res.render('index', {'waterdata': data});
-    })
-    .catch(function(err) {
-      console.log(err.message);
-      console.log(err.stack);
-    });
-  }
     
 function grabEachSite(req,res){
 

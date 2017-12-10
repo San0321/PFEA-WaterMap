@@ -6,7 +6,9 @@ var express = require('express'),
     cookieParser  = require('cookie-parser'),
     session       = require('express-session'),
     bodyParser    = require('body-parser'),
-    mongoose      = require('mongoose');
+    mongoose      = require('mongoose'),
+    cron       = require('node-cron'),
+    gsjson        = require('google-spreadsheet-to-json');
 
 // routing stuff
 var index = require('./routes/index'),
@@ -23,14 +25,58 @@ var app = express();
 
 const PORT = process.env.PORT || '3000';
 
+
+
+
 // connect to db
-var uri = "mongodb://test:test@ds151451.mlab.com:51451/reports";
-mongoose.connect(uri);
+//var uri = "mongodb://test:test@ds151451.mlab.com:51451/reports";
+//mongoose.connect(uri);
+
+// First initial get
+gsjson({
+      spreadsheetId: '1Ypdb32yiSeza61aQKiQ36xG7rWTOt7UMYpYUYZZFCvQ',
+      worksheet: 1,
+})
+.then(function(data) {
+      // Select the last 10 elements.
+      // Get every other element from the last 10.
+  console.log("Getting the info from the spreadsheet");
+  data = data
+      .slice(-10)
+      .filter((site, index) => index % 2 == 1);
+    console.log("passing into routers");
+    var time = new Date();
+    console.log("data fetched in " + time.toString());
+    app.locals.waterdata = {'waterdata': data};
+})
+
+
+// Getting the info from the spreadsheet
+cron.schedule("0,30 * * * *", function() {
+
+gsjson({
+      spreadsheetId: '1Ypdb32yiSeza61aQKiQ36xG7rWTOt7UMYpYUYZZFCvQ',
+      worksheet: 1,
+})
+.then(function(data) {
+      // Select the last 10 elements.
+      // Get every other element from the last 10.
+  console.log("Getting the info from the spreadsheet");
+  data = data
+      .slice(-10)
+      .filter((site, index) => index % 2 == 1);
+    console.log("passing into routers");
+    var time = new Date();
+    console.log("data fetched in " + time.toString());
+    app.locals.waterdata = {'waterdata': data};
+})
+});
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -80,3 +126,4 @@ app.use(function(err, req, res, next) {
 app.listen(PORT, function() {
     console.log('listening on port 3000')
 });
+

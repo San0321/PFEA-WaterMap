@@ -1,7 +1,16 @@
-# Clean Water
-ENG 100D ThunderHerd
+# PFEA water map
 
 ## Getting Started
-Please see [dev docs](/HELP.md) for a tutorial on how to get started testing/developing
+### Requirements
+- A recent version of NodeJS (tested with 9.2.0)
+- npm
 
-Also, use your respective branches and use PR's to merge to master pls
+### Setup
+```
+git clone repo-name && cd repo-name
+npm install
+npm start
+```
+
+### Troubleshooting
+Try removing node_modules/ (rm -r node_modules) and `npm install` again

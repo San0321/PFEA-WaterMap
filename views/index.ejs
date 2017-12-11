@@ -94,19 +94,19 @@
           point['date'] = waterdata[i].date + waterdata[i].time + " PST";
           point['cfuVal'] = waterdata[i]['ec[µs/cm]'];
           if (point['cfuVal'] <= 80) {
-            point['cfuLabel'] = "Clean";
+            point['cfuLabel'] = "Limpio";
             point['icon'] = makeIcon("img/green-pin.png");
           }
           if (point['cfuVal'] < 81 && point['cfuVal'] > 119) {
-              point['cfuLabel'] = "Fair";
+              point['cfuLabel'] = "Pasable";
               point['icon'] = makeIcon("img/yellow-pin.png");
           }
           if (point['cfuVal'] < 200 && point['cfuVal'] >= 121) {
-              point['cfuLabel'] = "Somewhat Polluted";
+              point['cfuLabel'] = "Algo Contaminado";
               point['icon'] = makeIcon("img/orange-pin.png");
           }
           if (point['cfuVal'] >= 200) {
-              point['cfuLabel'] = "Polluted";
+              point['cfuLabel'] = "Esta Contaminado";
               point['icon'] = makeIcon("img/black-pin.png");
           }
           markers.push(point);

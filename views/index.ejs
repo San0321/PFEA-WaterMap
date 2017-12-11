@@ -21,10 +21,12 @@
       <h1 class="legend">La Leyenda</h1>
       <p>
         <ul class="legend">
-          <li id="green"><b>Limpio</b><br>0 - 80 ec[µs/cm]</li>
+          <li id="green"><b>Muy limpio</b><br>0 - 40 ec[µs/cm]</li>
+          <li id="lightgreen"><b>Limpio</b><br>41 - 80 ec[µs/cm]</li>
           <li id="yellow"><b>Pasable</b><br>81 - 120 ec[µs/cm]</li>
-          <li id="orange"><b>Algo Contaminado</b><br>121 - 199 ec[µs/cm]</li>
-          <li id="black"><b>Esta Contaminado</b><br>200+ ec[µs/cm]</li>
+          <li id="orange"><b>Algo Contaminado</b><br>121 - 160 ec[µs/cm]</li>
+          <li id="red"><b>Esta Contaminado</b><br>161 - 199 ec[µs/cm]</li>
+          <li id="black"><b>Muy contaminado</b><br>200+ ec[µs/cm]</li>
         </ul></p>
     </div>
 
@@ -79,7 +81,6 @@
   }
   
   function initMap(waterdata) {
-      // console.log(JSON.stringify(waterdata));
       var markers = [];
       for (var i = 0; i < waterdata.length; i++) {
           var point = {};
@@ -90,7 +91,6 @@
           var date = new Date();
           date.setTime((waterdata[i].date-(25567 + 1))*86400*1000);
           waterdata[i].date = (date.getMonth()+1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ';
-          console.log(JSON.stringify(waterdata));
 
           point['date'] = waterdata[i].date + waterdata[i].time + " PST";
           point['ec[µs/cm]'] = waterdata[i]['ec[µs/cm]'];
@@ -107,7 +107,11 @@
           point['d.o.[%]'] = waterdata[i]['d.o.[%]'];
           point['d.o.[mg/l]'] = waterdata[i]['d.o.[mg/l]'];
           
-          if (point['ec[µs/cm]'] <= 80) {
+          if (point['ec[µs/cm]'] <= 40) {
+            point['cfuLabel'] = "Muy Limpio";
+            point['icon'] = makeIcon("img/green-pin.png");
+          }
+          if (point['ec[µs/cm]'] <= 80 && point['ec[µs/cm]'] >= 41)) {
             point['cfuLabel'] = "Limpio";
             point['icon'] = makeIcon("img/green-pin.png");
           }
@@ -115,12 +119,16 @@
               point['cfuLabel'] = "Pasable";
               point['icon'] = makeIcon("img/yellow-pin.png");
           }
-          if (point['ec[µs/cm]'] < 200 && point['cfuVal'] >= 121) {
+          if (point['ec[µs/cm]'] < 161 && point['cfuVal'] >= 121) {
               point['cfuLabel'] = "Algo Contaminado";
               point['icon'] = makeIcon("img/orange-pin.png");
           }
-          if (point['ec[µs/cm]'] >= 200) {
+          if (point['ec[µs/cm]'] >= 199 && point['cfuVal'] >= 161) {
               point['cfuLabel'] = "Esta Contaminado";
+              point['icon'] = makeIcon("img/black-pin.png");
+          }
+          if (point['ec[µs/cm]'] >= 200) {
+              point['cfuLabel'] = "Muy Contaminado";
               point['icon'] = makeIcon("img/black-pin.png");
           }
           markers.push(point);
@@ -143,7 +151,6 @@
       });
       for (var marker in markers) {
           marker = markers[marker];
-          console.log(marker.name);
           var html = '<div id="content">' +
               '<h1>' + marker.name + '</h1>' +
               '<div id="bodyContent">' +

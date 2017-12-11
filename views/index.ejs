@@ -88,19 +88,19 @@
           point['cfuVal'] = waterdata[i]['ec[µs/cm]'];
           if (point['cfuVal'] <= 400) {
               point['cfuLabel'] = "Clean";
-              point['icon'] = "img/green-pin.svg";
+              point['icon'] = "img/green-pin.png";
           }
           if (point['cfuVal'] < 600 && point['cfuVal'] > 400) {
               point['cfuLabel'] = "Fair";
-              point['icon'] = "img/yellow-pin.svg";
+              point['icon'] = "img/yellow-pin.png";
           }
           if (point['cfuVal'] < 900 && point['cfuVal'] >= 600) {
               point['cfuLabel'] = "Somewhat Polluted";
-              point['icon'] = "img/orange-pin.svg";
+              point['icon'] = "img/orange-pin.png";
           }
           if (point['cfuVal'] >= 900) {
               point['cfuLabel'] = "Polluted";
-              point['icon'] = "img/red-pin.svg";
+              point['icon'] = "img/red-pin.png";
           }
           markers.push(point);
       }

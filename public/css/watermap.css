@@ -44,25 +44,29 @@ ul.legend{
 }
 
 .legend li#green {
-	background:url('../img/green-pin.svg') no-repeat;
+	background:url('../img/green-pin.png') no-repeat;
+	background-size: auto 36px;
 	padding-left: 40px;
 	margin: 20px 0px;
 }
 
 .legend li#yellow {
-	background:url('../img/yellow-pin.svg') no-repeat;
+	background:url('../img/yellow-pin.png') no-repeat;
+	background-size: auto 36px;
 	padding-left: 40px;
 	margin: 20px 0px;
 }
 
 .legend li#orange {
-	background:url('../img/orange-pin.svg') no-repeat;
+	background:url('../img/orange-pin.png') no-repeat;
+	background-size: auto 36px;
 	padding-left: 40px;
 	margin: 20px 0px;
 }
 
-.legend li#red {
-	background:url('../img/red-pin.svg') no-repeat;
+.legend li#black {
+	background:url('../img/black-pin.png') no-repeat;
+	background-size: auto 36px;
 	padding-left: 40px;
 	margin: 20px 0px;
 }

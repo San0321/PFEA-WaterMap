@@ -18,13 +18,13 @@
     <!-- Legend Content-->
     <div id="my_popup">
       <p class="my_popup_close">&times;</p>
-      <h1 class="legend">Legend</h1>
+      <h1 class="legend">La Leyenda</h1>
       <p>
         <ul class="legend">
-          <li id="green"><b>Clean</b><br>0 - 400 cfu/ml</li>
-          <li id="yellow"><b>Fair</b><br>500 - 600 cfu/ml</li>
-          <li id="orange"><b>Somewhat Polluted</b><br>700 - 900 cfu/ml</li>
-          <li id="red"><b>Polluted</b><br>1000+ cfu/ml</li>
+          <li id="green"><b>Limpio</b><br>0 - 80 cfu/ml</li>
+          <li id="yellow"><b>Pasable</b><br>81 - 120 cfu/ml</li>
+          <li id="orange"><b>Algo Contaminado</b><br>121 - 199 cfu/ml</li>
+          <li id="black"><b>Esta Contaminado</b><br>200+ cfu/ml</li>
         </ul></p>
     </div>
 
@@ -74,7 +74,7 @@
   function makeIcon(url) {
     return {
       url: url,
-      scaledSize: new google.maps.Size(25, 25),
+      scaledSize: new google.maps.Size(30, 41),
     }
   }
   
@@ -93,21 +93,21 @@
 
           point['date'] = waterdata[i].date + waterdata[i].time + " PST";
           point['cfuVal'] = waterdata[i]['ec[µs/cm]'];
-          if (point['cfuVal'] <= 400) {
+          if (point['cfuVal'] <= 80) {
             point['cfuLabel'] = "Clean";
             point['icon'] = makeIcon("img/green-pin.png");
           }
-          if (point['cfuVal'] < 600 && point['cfuVal'] > 400) {
+          if (point['cfuVal'] < 81 && point['cfuVal'] > 119) {
               point['cfuLabel'] = "Fair";
               point['icon'] = makeIcon("img/yellow-pin.png");
           }
-          if (point['cfuVal'] < 900 && point['cfuVal'] >= 600) {
+          if (point['cfuVal'] < 200 && point['cfuVal'] >= 121) {
               point['cfuLabel'] = "Somewhat Polluted";
               point['icon'] = makeIcon("img/orange-pin.png");
           }
-          if (point['cfuVal'] >= 900) {
+          if (point['cfuVal'] >= 200) {
               point['cfuLabel'] = "Polluted";
-              point['icon'] = makeIcon("img/red-pin.png");
+              point['icon'] = makeIcon("img/black-pin.png");
           }
           markers.push(point);
       }
